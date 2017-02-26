@@ -21,9 +21,6 @@ def Login():
     global Username
     Username = '15124542'
     Password = '52heqinglin'
-    if not Username in AuthorizeList:
-        raw_input(u'验证失败...')
-        quit()
     UrlVerifyPic = UrlIndex + '/Login/GetValidateCode?%20%20+%20GetTimestamp()'
     ImageResp = Req.get(UrlVerifyPic)
     ImageData = StringIO(ImageResp.content)
