@@ -8,6 +8,7 @@ from PIL import Image
 from hashlib import md5
 from StringIO import StringIO
 import CaptchaSolver
+import os
 
 import sys
 reload(sys)
@@ -21,9 +22,6 @@ def Login():
     global Username
     Username = '15124542'
     Password = '52heqinglin'
-    if not Username in AuthorizeList:
-        raw_input(u'验证失败...')
-        quit()
     UrlVerifyPic = UrlIndex + '/Login/GetValidateCode?%20%20+%20GetTimestamp()'
     ImageResp = Req.get(UrlVerifyPic)
     ImageData = StringIO(ImageResp.content)
@@ -31,6 +29,7 @@ def Login():
     ImageName = str(md5(ImageResp.content).hexdigest())+".jpg"
     im.save(ImageName)
     VerifyCode = CaptchaSolver.solve(ImageName)
+    os.remove(ImageName)
     LoginData = {
         'txtUserName': Username,
         'txtPassword': Password,
