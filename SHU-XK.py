@@ -20,7 +20,7 @@ def CheckIndexUrl():
 def Login():
     global Username
     Username = '15124542'
-    Password = '?coWin?318'
+    Password = '52heqinglin'
     if not Username in AuthorizeList:
         raw_input(u'验证失败...')
         quit()
